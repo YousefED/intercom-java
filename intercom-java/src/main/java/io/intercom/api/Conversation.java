@@ -97,6 +97,13 @@ public class Conversation extends TypedData {
         return response;
     }
 
+    public Conversation update(Conversation conversation) {
+        final Conversation internal = new Conversation();
+        internal.id = conversation.id;
+        internal.read = conversation.read;
+        return DataResource.update(internal, "conversations", Conversation.class);
+    }
+
     private static boolean isUserQuery(Map<String, String> params) {
         return params.containsKey("type") && params.get("type").equals("user");
     }
@@ -204,6 +211,10 @@ public class Conversation extends TypedData {
 
     public boolean getRead() {
         return read;
+    }
+
+    public void setRead(boolean read) {
+        this.read = read;
     }
 
     @Override
